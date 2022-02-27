@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Abstract
 {
-   public interface IUserDetailDal: IEntityRepository<UserDetail>
+    public interface IColorDal:IEntityRepository<Color>
     {
     }
 }

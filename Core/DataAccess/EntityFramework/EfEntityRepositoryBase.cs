@@ -21,8 +21,6 @@ namespace Core.DataAccess.EntityFramework
             context.SaveChanges();
         }
 
-
-
         public void Delete(TEntity entity)
         {
             using TContext context = new TContext();
@@ -30,7 +28,6 @@ namespace Core.DataAccess.EntityFramework
             deletedEntity.State = EntityState.Deleted;
             context.SaveChanges();
         }
-
 
 
         public TEntity Get(Expression<Func<TEntity, bool>> filter)
@@ -52,8 +49,8 @@ namespace Core.DataAccess.EntityFramework
             //}
 
             return filter == null
-            ? context.Set<TEntity>().ToList()
-            : context.Set<TEntity>().Where(filter).ToList();
+                ? context.Set<TEntity>().ToList()
+                : context.Set<TEntity>().Where(filter).ToList();
         }
 
 
