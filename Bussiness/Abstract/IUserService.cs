@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace Bussiness.Abstract
 {
-    public interface ICarService
+   public interface IUserService
     {
-        IResult Add(Car car);
-        IResult Update(Car car);
-        IResult Delete(Car car);
 
-        IDataResult<List<CarDto>> GetAllDetails();
+        IResult Add(User user);
+        IResult Update(User user);
+        IResult Delte(User user);
+        IDataResult<List<UserDto>> GetAllDetails();
     }
 }
