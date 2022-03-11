@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Bussiness.Concrete
 {
-    class ColorManager : IColorService
+    public class ColorManager : IColorService
     {
         private readonly IColorDal _colorDal;
 

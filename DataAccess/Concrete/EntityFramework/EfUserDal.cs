@@ -17,7 +17,7 @@ namespace DataAccess.Concrete.EntityFramework
             using (RacContext context = new RacContext())
             {
                 var result = from u in context.Users
-                             join ud in context.UserDetails on u.UserDetailId equals ud.Id
+                             join ud in context.UserDetails on u.Id equals ud.UserId
                              select new UserDto
                              {
                                  Id = u.Id,
@@ -32,6 +32,28 @@ namespace DataAccess.Concrete.EntityFramework
 
                 return result.ToList(); 
             }
+        }
+
+        public UserDto GetDetails(int userId)
+        {
+            using RacContext context = new();
+
+            var result = from u in context.Users
+                         where u.Id == userId
+                         join ud in context.UserDetails on u.Id equals ud.UserId
+                         select new UserDto
+                         {
+                             Id = u.Id,
+                             Firstname = ud.Firstname,
+                             Lastname = ud.Lastname,
+                             BirthDate = ud.BirthDate,
+                             Email = ud.Email,
+                             Phone = ud.Phone,
+                             CreateDate = u.CreateDate,
+                             Status = u.Status
+                         };
+
+            return result.FirstOrDefault();
         }
     }
 }

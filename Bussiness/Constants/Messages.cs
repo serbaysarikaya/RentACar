@@ -26,6 +26,15 @@ namespace Bussiness.Constants
         public static readonly string ColorUpdated = "Color successfully updated to database";
         public static readonly string ColorDeleted = "Color successfully deleted to database";
 
+        public static readonly string CarDetailAdded   = "Car Detail successfully added to database";
+        public static readonly string CarDetailDeleted = "Car Detail successfully deleted to database";
+        public static readonly string CarDetailUpdated = "Car Detail successfully updated to database";
+
+
+        public static readonly string UserDetailAdded = "User Detail successfully added to database";
+        public static readonly string UserDetailUpdated = "User Detail successfully updated to database";
+        public static readonly string UserDetailDeleted = "User Detail successfully deleted to database";
+
 
         public static string AllDataListed = "All data listed";
     }

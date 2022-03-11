@@ -15,7 +15,7 @@ namespace DataAccess.Concrete.EntityFramework
             using RacContext context = new();
 
             var result = from c in context.Cars
-                         join cd in context.CarDetails on c.CarDetailId equals cd.Id
+                         join cd in context.CarDetails on c.Id equals cd.CarId
                          join b in context.Brands on c.BrandId equals b.Id
                          join clr in context.Colors on cd.ColorId equals clr.Id
                          select new CarDto

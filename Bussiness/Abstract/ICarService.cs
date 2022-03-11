@@ -1,11 +1,7 @@
 ﻿using Core.Utilities.Results;
 using Entities.Concrete;
 using Entities.DTO;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Bussiness.Abstract
 {
@@ -14,7 +10,7 @@ namespace Bussiness.Abstract
         IResult Add(Car car);
         IResult Update(Car car);
         IResult Delete(Car car);
-
+        IDataResult<List<Car>> GetAll();
         IDataResult<List<CarDto>> GetAllDetails();
     }
 }

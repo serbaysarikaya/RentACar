@@ -10,6 +10,7 @@ namespace Entities.Concrete
     public class CarDetail : IEntity
     {
         public int Id { get; set; }
+        public int CarId { get; set; }
         public int ModelYear { get; set; }
         public int ColorId { get; set; }
         public string Kilometer { get; set; }

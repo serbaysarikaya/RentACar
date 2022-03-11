@@ -12,18 +12,29 @@ using System.Threading.Tasks;
 
 namespace Bussiness.Concrete
 {
-    class UserManager : IUserService
+    public class UserManager : IUserService
     {
         private readonly IUserDal _userDal;
+        private readonly IUserDetailService _userDetailService;
 
-        public UserManager(IUserDal userDal)
+
+        public UserManager(IUserDal userDal, IUserDetailService userDetailService)
         {
             _userDal = userDal;
+            _userDetailService = userDetailService;
         }
 
         public IResult Add(User user)
         {
             _userDal.Add(user);
+            var result = AddUserDetail(user.Id);
+
+            if (!result.Success)
+            {
+                return new ErrorResult();
+            }
+
+
             return new SuccessResult(Messages.UserAdded);
         }
 
@@ -33,7 +44,7 @@ namespace Bussiness.Concrete
             return new SuccessResult(Messages.UserUpdated);
         }
 
-        public IResult Delte(User user)
+        public IResult Delete(User user)
         {
             _userDal.Delete(user);
             return new SuccessResult(Messages.UserDeleted);
@@ -42,6 +53,19 @@ namespace Bussiness.Concrete
         public IDataResult<List<UserDto>> GetAllDetails() => new SuccessDataResult<List<UserDto>>(Messages.AllDataListed, _userDal.GetAllDetails());
 
 
+        public IDataResult<UserDto> GetById(int id)
+        {
+            return new SuccessDataResult<UserDto>(Messages.AllDataListed, _userDal.GetDetails(id));
+        }
+        private IResult AddUserDetail(int userId)
+        {
+            UserDetail userDetail = new UserDetail()
+            {
+                UserId = userId
+            };
+            _userDetailService.Add(userDetail);
+            return new SuccessResult();
 
+        }
     }
 }

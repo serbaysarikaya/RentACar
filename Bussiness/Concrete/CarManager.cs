@@ -4,26 +4,34 @@ using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTO;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Bussiness.Concrete
 {
     public class CarManager : ICarService
     {
         private readonly ICarDal _carDal;
+        private readonly ICarDetailService _carDetailService;
 
-        public CarManager(ICarDal carDal)
+        public CarManager(ICarDal carDal, ICarDetailService carDetailService)
         {
             _carDal = carDal;
+            _carDetailService = carDetailService;
         }
+
+        #region Public Methods
 
         public IResult Add(Car car)
         {
             _carDal.Add(car);
+
+            var result = AddCarDetail(car.Id);
+
+            if(!result.Success)
+            {
+                return new ErrorResult();
+            }
+
             return new SuccessResult(Messages.CarAdded);
         }
 
@@ -37,11 +45,28 @@ namespace Bussiness.Concrete
         {
             _carDal.Delete(car);
             return new SuccessResult(Messages.CarDeleted);
-           
+
         }
 
         public IDataResult<List<CarDto>> GetAllDetails() => new SuccessDataResult<List<CarDto>>(Messages.AllDataListed, _carDal.GetAllDetails());
 
-   
+        public IDataResult<List<Car>> GetAll() => new SuccessDataResult<List<Car>>(Messages.AllDataListed, _carDal.GetAll());
+
+        #endregion
+
+        #region Private Methods
+
+        private IResult AddCarDetail(int carId)
+        {
+            CarDetail carDetail = new CarDetail
+            {
+                CarId = carId
+            };
+
+            _carDetailService.Add(carDetail);
+            return new SuccessResult();
+        }
+
+        #endregion
     }
 }
