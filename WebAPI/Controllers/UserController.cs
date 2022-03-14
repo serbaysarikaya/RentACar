@@ -25,7 +25,7 @@ namespace WebAPI.Controllers
 
             var result = _userService.Add(user);
 
-            return Ok(result);
+            return result.Success ? Ok(result) : BadRequest(result);
 
 
         }
@@ -34,7 +34,7 @@ namespace WebAPI.Controllers
         {
             var result = _userService.Update(user);
 
-            return Ok(user);
+            return result.Success ? Ok(result) : BadRequest(result);
 
         }
 
@@ -42,22 +42,22 @@ namespace WebAPI.Controllers
         public IActionResult Delete(User user)
         {
             var result = _userService.Delete(user);
-            return Ok(result);
-
+            return result.Success ? Ok(result) : BadRequest(result);
         }
-        [HttpGet("GetAllDetails")]
+
+        [HttpGet]
         public IActionResult GetAllDetails()
         {
             var result = _userService.GetAllDetails();
-            return Ok(result);
-
+            return result.Success ? Ok(result) : BadRequest(result);
         }
-        [HttpGet]
+
+        [HttpGet("getbyid")]
         public IActionResult GetById(int id)
         {
             var result = _userService.GetById(id);
 
-            return Ok(id);
+            return result.Success ? Ok(result) : BadRequest(result);
         }
 
     }

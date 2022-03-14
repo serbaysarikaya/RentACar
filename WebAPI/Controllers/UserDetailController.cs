@@ -20,7 +20,7 @@ namespace WebAPI.Controllers
         {
             var result = _userDetailService.Add(userDetail);
 
-            return Ok(result);
+            return result.Success ? Ok(result) : BadRequest(result);;
 
         }
 
@@ -28,14 +28,14 @@ namespace WebAPI.Controllers
         public IActionResult Update(UserDetail userDetail) 
         {
             var result = _userDetailService.Update(userDetail);
-            return Ok(result);
+            return result.Success ? Ok(result) : BadRequest(result);;
         }
         [HttpDelete]
         public IActionResult Delete(UserDetail userDetail)
         {
             var result = _userDetailService.Delete(userDetail);
 
-            return Ok(result);
+            return result.Success ? Ok(result) : BadRequest(result);;
         }
         [HttpGet]
 
@@ -43,7 +43,7 @@ namespace WebAPI.Controllers
        {
 
             var result = _userDetailService.GetAllDetails();
-            return Ok(result);
+            return result.Success ? Ok(result) : BadRequest(result);;
         }
 
 

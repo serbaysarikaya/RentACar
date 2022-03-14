@@ -21,35 +21,35 @@ namespace WebAPI.Controllers
         public IActionResult GetAll()
         {
             var result = _carService.GetAll();
-            return Ok(result);
+            return result.Success ? Ok(result) : BadRequest(result);
         }
 
         [HttpGet("getdetails")]
         public IActionResult GetAllDetails()
         {
             var result = _carService.GetAllDetails();
-            return Ok(result);
+            return result.Success ? Ok(result) : BadRequest(result);
         }
 
         [HttpPost]
         public IActionResult Add(Car car)
         {
             var result = _carService.Add(car);
-            return Ok(result);
+            return result.Success ? Ok(result) : BadRequest(result);
         }
 
         [HttpPut]
         public IActionResult Update(Car car)
         {
             var result = _carService.Update(car);
-            return Ok(result);
+            return result.Success ? Ok(result) : BadRequest(result);
         }
 
         [HttpDelete]
         public IActionResult Delete(Car car)
         {
             var result = _carService.Delete(car);
-            return Ok(result);
+            return result.Success ? Ok(result) : BadRequest(result);
         }
     }
 }

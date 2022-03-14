@@ -21,14 +21,14 @@ namespace WebAPI.Controllers
         public IActionResult Add(Color color)
         {
             var result = _colorService.Add(color);
-            return Ok(result);
+            return result.Success ? Ok(result) : BadRequest(result);
         }
 
         [HttpPut]
         public IActionResult Update(Color color)
         {
             var result = _colorService.Update(color);
-            return Ok(result);
+            return result.Success ? Ok(result) : BadRequest(result);
 
         }
 
@@ -36,7 +36,7 @@ namespace WebAPI.Controllers
         public IActionResult Delete(Color color)
         {
             var result = _colorService.Delte(color);
-            return Ok(result);
+            return result.Success ? Ok(result) : BadRequest(result);
         }
 
         [HttpGet]
@@ -44,14 +44,14 @@ namespace WebAPI.Controllers
         {
             var result = _colorService.GetAll();
 
-            return Ok(result);
+            return result.Success ? Ok(result) : BadRequest(result);
         }
 
         [HttpGet("getbyid")]
         public IActionResult GetById(int id) 
         {
-            var resul = _colorService.GetById( id);
-            return Ok(resul);
+            var result = _colorService.GetById( id);
+            return result.Success ? Ok(result) : BadRequest(result);
         }
         [HttpGet("getbyname")]
         public IActionResult GetByName(string name)
@@ -63,8 +63,8 @@ namespace WebAPI.Controllers
         [HttpGet("getallbyname")]
         public IActionResult GetAllByName(string name)
         {
-            var resul = _colorService.GetAllByName(name);
-            return Ok(resul);
+            var result= _colorService.GetAllByName(name);
+            return result.Success ? Ok(result) : BadRequest(result);
         }
 
     }

@@ -19,14 +19,14 @@ namespace WebAPI.Controllers
         public IActionResult Add(CarDetail carDetail)
         {
             var result = _carDetailService.Add(carDetail);
-            return Ok(result);
+            return result.Success ? Ok(result) : BadRequest(result);
         }
 
         [HttpPut]
         public IActionResult Update(CarDetail carDetail)
         {
             var result = _carDetailService.Update(carDetail);
-            return Ok(result);
+            return result.Success ? Ok(result) : BadRequest(result);
         }
 
         [HttpDelete]
@@ -34,21 +34,21 @@ namespace WebAPI.Controllers
         {
             var result = _carDetailService.Delete(carDetail);
 
-            return Ok(result);
+            return result.Success ? Ok(result) : BadRequest(result);
         }
         
         [HttpGet("getbyid")]
         public IActionResult GetById(int id)
         {
             var result = _carDetailService.GetById(id);
-            return Ok(result);
+            return result.Success ? Ok(result) : BadRequest(result);
         }
 
         [HttpGet]
         public IActionResult GetAll()
         {
             var result = _carDetailService.GetAll();
-            return Ok(result);
+            return result.Success ? Ok(result) : BadRequest(result);
         }
 
 

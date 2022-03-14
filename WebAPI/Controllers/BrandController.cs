@@ -18,7 +18,7 @@ namespace WebAPI.Controllers
         public IActionResult Add(Brand brand)
         {
             var result = _brandService.Add(brand);
-            return Ok(result);
+            return result.Success ? Ok(result) : BadRequest(result);
 
         }
 
@@ -26,7 +26,7 @@ namespace WebAPI.Controllers
         public IActionResult Update(Brand brand)
         {
             var result = _brandService.Update(brand);
-            return Ok(result);
+            return result.Success ? Ok(result) : BadRequest(result);
 
         }
 
@@ -34,7 +34,7 @@ namespace WebAPI.Controllers
         public IActionResult Delete(Brand brand)
         {
             var result = _brandService.Delete(brand);
-            return Ok(result);
+            return result.Success ? Ok(result) : BadRequest(result);
         }
 
         [HttpGet("getbyid")]
@@ -42,7 +42,7 @@ namespace WebAPI.Controllers
         {
             var result = _brandService.GetById(id);
 
-            return Ok(result);
+            return result.Success ? Ok(result) : BadRequest(result);
 
         }
 
@@ -51,14 +51,14 @@ namespace WebAPI.Controllers
         {
             var result = _brandService.GetAllByName(name);
 
-            return Ok(result);
+            return result.Success ? Ok(result) : BadRequest(result);
         }
         [HttpGet]
         public IActionResult GetAllByName(string name)
         {
 
             var result = _brandService.GetAllByName(name);
-            return Ok(result);
+            return result.Success ? Ok(result) : BadRequest(result);
 
         }
 
