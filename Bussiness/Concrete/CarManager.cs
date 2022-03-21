@@ -19,8 +19,7 @@ namespace Bussiness.Concrete
             _carDetailService = carDetailService;
         }
 
-        #region Public Methods
-
+        #region Public Method
         public IResult Add(Car car)
         {
             _carDal.Add(car);
