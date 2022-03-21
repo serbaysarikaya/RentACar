@@ -1,5 +1,6 @@
 ﻿using Bussiness.Abstract;
 using Bussiness.Constants;
+using Core.Aspects.Autofac.Caching;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -52,7 +53,7 @@ namespace Bussiness.Concrete
 
         public IDataResult<List<UserDto>> GetAllDetails() => new SuccessDataResult<List<UserDto>>(Messages.AllDataListed, _userDal.GetAllDetails());
 
-
+        [CacheAspect]
         public IDataResult<UserDto> GetById(int id)
         {
             return new SuccessDataResult<UserDto>(Messages.AllDataListed, _userDal.GetDetails(id));

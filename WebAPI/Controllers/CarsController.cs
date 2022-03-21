@@ -6,13 +6,13 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CarController : ControllerBase
+    public class CarsController : ControllerBase
     {
         //CarManager _carService = new CarManager(new EfCarDal());
         
         private readonly ICarService _carService;
 
-        public CarController(ICarService carService)
+        public CarsController(ICarService carService)
         {
             _carService = carService;
         }

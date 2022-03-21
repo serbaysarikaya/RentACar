@@ -1,5 +1,6 @@
 ﻿using Bussiness.Abstract;
 using Bussiness.Constants;
+using Core.Aspects.Autofac.Caching;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -20,6 +21,8 @@ namespace Bussiness.Concrete
         }
 
         #region Public Method
+
+        [CacheRemoveAspect("ICarService.Get")]
         public IResult Add(Car car)
         {
             _carDal.Add(car);
@@ -34,12 +37,14 @@ namespace Bussiness.Concrete
             return new SuccessResult(Messages.CarAdded);
         }
 
+        [CacheRemoveAspect("ICarService.Get")]
         public IResult Update(Car car)
         {
             _carDal.Update(car);
             return new SuccessResult(Messages.CarUpdated);
         }
 
+        [CacheRemoveAspect("ICarService.Get")]
         public IResult Delete(Car car)
         {
             _carDal.Delete(car);
@@ -47,8 +52,10 @@ namespace Bussiness.Concrete
 
         }
 
+        [CacheAspect]
         public IDataResult<List<CarDto>> GetAllDetails() => new SuccessDataResult<List<CarDto>>(Messages.AllDataListed, _carDal.GetAllDetails());
 
+        [CacheAspect]
         public IDataResult<List<Car>> GetAll() => new SuccessDataResult<List<Car>>(Messages.AllDataListed, _carDal.GetAll());
 
         #endregion
