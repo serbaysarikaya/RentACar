@@ -9,7 +9,7 @@ namespace Bussiness.Abstract
     {
         IResult Add(Car car);
         IResult Update(Car car);
-        IResult Delete(Car car);
+        IResult Delete(int carId);
         IDataResult<List<Car>> GetAll();
         IDataResult<List<CarDto>> GetAllDetails();
     }

@@ -40,8 +40,9 @@ namespace Bussiness.Concrete
             return new SuccessResult(Messages.CarUpdated);
         }
 
-        public IResult Delete(Car car)
+        public IResult Delete(int carId)
         {
+            Car car = _carDal.Get(c => c.Id == carId);
             _carDal.Delete(car);
             return new SuccessResult(Messages.CarDeleted);
 
@@ -57,7 +58,7 @@ namespace Bussiness.Concrete
 
         private IResult AddCarDetail(int carId)
         {
-            CarDetail carDetail = new CarDetail
+            CarDetail carDetail = new()
             {
                 CarId = carId
             };

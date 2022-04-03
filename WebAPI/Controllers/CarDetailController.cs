@@ -30,9 +30,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpDelete]
-        public IActionResult Delete(CarDetail carDetail)
+        public IActionResult Delete(int carDetailId)
         {
-            var result = _carDetailService.Delete(carDetail);
+            var result = _carDetailService.Delete(carDetailId);
 
             return result.Success ? Ok(result) : BadRequest(result);
         }

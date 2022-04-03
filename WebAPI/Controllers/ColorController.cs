@@ -33,9 +33,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpDelete]
-        public IActionResult Delete(Color color)
+        public IActionResult Delete(int colorId)
         {
-            var result = _colorService.Delte(color);
+            var result = _colorService.Delete(colorId);
             return result.Success ? Ok(result) : BadRequest(result);
         }
 
