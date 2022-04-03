@@ -21,21 +21,22 @@ namespace Bussiness.Concrete
             _userDetailDal = userDetailDal;
         }
 
-        public IResult Add(UserDetail userDeatail)
+        public IResult Add(UserDetail userDetail)
         {
-            _userDetailDal.Add(userDeatail);
+            _userDetailDal.Add(userDetail);
             return new SuccessResult(Messages.UserDetailAdded);
         }
 
-        public IResult Update(UserDetail userDeatail)
+        public IResult Update(UserDetail userDetail)
         {
-            _userDetailDal.Update(userDeatail);
+            _userDetailDal.Update(userDetail);
             return new SuccessResult(Messages.UserDetailUpdated);
         }
 
-        public IResult Delete(UserDetail userDeatail)
+        public IResult Delete(int userDetailId)
         {
-            _userDetailDal.Delete(userDeatail);
+            UserDetail userDetail = _userDetailDal.Get(ud => ud.Id == userDetailId);
+            _userDetailDal.Delete(userDetail);
             return new SuccessResult(Messages.UserDetailDeleted);
         }
 

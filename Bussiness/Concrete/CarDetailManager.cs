@@ -29,8 +29,9 @@ namespace Bussiness.Concrete
             return new SuccessResult(Messages.CarDetailUpdated);
         }
 
-        public IResult Delete(CarDetail carDetail)
+        public IResult Delete(int carDetailId)
         {
+            CarDetail carDetail = _carDetailDal.Get(cd => cd.Id == carDetailId);
             _carDetailDal.Delete(carDetail);
 
             return new SuccessResult(Messages.CarDetailDeleted);

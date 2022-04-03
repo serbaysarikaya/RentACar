@@ -32,8 +32,9 @@ namespace Bussiness.Concrete
             return new SuccessResult(Messages.ColorUpdated);
         }
 
-        public IResult Delte(Color color)
+        public IResult Delete(int colorId)
         {
+            Color color = _colorDal.Get(c => c.Id == colorId);
             _colorDal.Delete(color);
             return new SuccessResult(Messages.ColorDeleted);
         }

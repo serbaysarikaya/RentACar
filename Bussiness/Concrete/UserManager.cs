@@ -45,8 +45,9 @@ namespace Bussiness.Concrete
             return new SuccessResult(Messages.UserUpdated);
         }
 
-        public IResult Delete(User user)
+        public IResult Delete(int userId)
         {
+            User user = _userDal.Get(u => u.Id == userId);
             _userDal.Delete(user);
             return new SuccessResult(Messages.UserDeleted);
         }
@@ -60,7 +61,7 @@ namespace Bussiness.Concrete
         }
         private IResult AddUserDetail(int userId)
         {
-            UserDetail userDetail = new UserDetail()
+            UserDetail userDetail = new()
             {
                 UserId = userId
             };

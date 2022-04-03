@@ -31,9 +31,9 @@ namespace WebAPI.Controllers
             return result.Success ? Ok(result) : BadRequest(result);;
         }
         [HttpDelete]
-        public IActionResult Delete(UserDetail userDetail)
+        public IActionResult Delete(int userDetailId)
         {
-            var result = _userDetailService.Delete(userDetail);
+            var result = _userDetailService.Delete(userDetailId);
 
             return result.Success ? Ok(result) : BadRequest(result);;
         }

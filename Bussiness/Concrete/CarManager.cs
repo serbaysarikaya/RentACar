@@ -44,9 +44,9 @@ namespace Bussiness.Concrete
             return new SuccessResult(Messages.CarUpdated);
         }
 
-        [CacheRemoveAspect("ICarService.Get")]
         public IResult Delete(Car car)
         {
+            Car car = _carDal.Get(c => c.Id == carId);
             _carDal.Delete(car);
             return new SuccessResult(Messages.CarDeleted);
 
@@ -64,7 +64,7 @@ namespace Bussiness.Concrete
 
         private IResult AddCarDetail(int carId)
         {
-            CarDetail carDetail = new CarDetail
+            CarDetail carDetail = new()
             {
                 CarId = carId
             };
