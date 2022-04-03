@@ -1,5 +1,6 @@
 ﻿using Bussiness.Abstract;
 using Bussiness.Constants;
+using Core.Aspects.Autofac.Caching;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -20,18 +21,21 @@ namespace Bussiness.Concrete
             _colorDal = colorDal;
         }
 
+        [CacheRemoveAspect("ICarService.Get")]
         public IResult Add(Color color)
         {
             _colorDal.Add(color);
             return new SuccessResult(Messages.ColorAdded);
         }
 
+        [CacheRemoveAspect("ICarService.Get")]
         public IResult Update(Color color)
         {
             _colorDal.Update(color);
             return new SuccessResult(Messages.ColorUpdated);
         }
 
+        [CacheRemoveAspect("ICarService.Get")]
         public IResult Delete(int colorId)
         {
             Color color = _colorDal.Get(c => c.Id == colorId);
@@ -39,6 +43,7 @@ namespace Bussiness.Concrete
             return new SuccessResult(Messages.ColorDeleted);
         }
 
+        [CacheAspect]
         public IDataResult<List<Color>> GetAll()
         {
             return new SuccessDataResult<List<Color>>(Messages.AllDataListed, _colorDal.GetAll());
@@ -54,6 +59,7 @@ namespace Bussiness.Concrete
             return new SuccessDataResult<Color>(Messages.AllDataListed, _colorDal.Get(c => c.Name == colorName));
         }
 
+        [CacheAspect]
         public IDataResult<List<Color>> GetAllByName(string name) => new SuccessDataResult<List<Color>>(Messages.AllDataListed, _colorDal.GetAll(b => b.Name == name));
 
     }

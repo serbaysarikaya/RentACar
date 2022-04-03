@@ -25,6 +25,7 @@ namespace Bussiness.Concrete
             _userDetailService = userDetailService;
         }
 
+        [CacheRemoveAspect("IUserService.Get")]
         public IResult Add(User user)
         {
             _userDal.Add(user);
@@ -39,12 +40,14 @@ namespace Bussiness.Concrete
             return new SuccessResult(Messages.UserAdded);
         }
 
+        [CacheRemoveAspect("IUserService.Get")]
         public IResult Update(User user)
         {
             _userDal.Update(user);
             return new SuccessResult(Messages.UserUpdated);
         }
 
+        [CacheRemoveAspect("IUserService.Get")]
         public IResult Delete(int userId)
         {
             User user = _userDal.Get(u => u.Id == userId);
@@ -52,6 +55,7 @@ namespace Bussiness.Concrete
             return new SuccessResult(Messages.UserDeleted);
         }
 
+        [CacheAspect]
         public IDataResult<List<UserDto>> GetAllDetails() => new SuccessDataResult<List<UserDto>>(Messages.AllDataListed, _userDal.GetAllDetails());
 
         [CacheAspect]

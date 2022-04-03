@@ -1,10 +1,5 @@
 ﻿using Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework
 {//Data access baslangıç noktası Burası.
@@ -12,8 +7,8 @@ namespace DataAccess.Concrete.EntityFramework
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //optionsBuilder.UseSqlServer(@"Server=.;Database=RentACar;Trusted_Connection=True;");
-            optionsBuilder.UseSqlServer(@"Server=DESKTOP-UTMJ6C8\SQLEXPRESS;Database=RentACar;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(@"Server=.;Database=RentACar;Trusted_Connection=True;");
+            //optionsBuilder.UseSqlServer(@"Server=DESKTOP-UTMJ6C8\SQLEXPRESS;Database=RentACar;Trusted_Connection=True;");
         }
 
         public DbSet<Brand> Brands { get; set; }
