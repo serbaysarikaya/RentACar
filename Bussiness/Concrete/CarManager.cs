@@ -44,7 +44,7 @@ namespace Bussiness.Concrete
             return new SuccessResult(Messages.CarUpdated);
         }
 
-        public IResult Delete(Car car)
+        public IResult Delete(int carId)
         {
             Car car = _carDal.Get(c => c.Id == carId);
             _carDal.Delete(car);
